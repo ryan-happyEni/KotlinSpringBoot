@@ -1,0 +1,17 @@
+#--- spring
+spring:
+  profiles:
+    active: local
+
+#--- jpa
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#--- datasource
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=true
+    username: test
+    password: test1234

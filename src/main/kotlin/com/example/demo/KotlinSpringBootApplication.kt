@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 @SpringBootApplication
-open class KotlinSpringBootApplication
+class KotlinSpringBootApplication
 
 fun main(args: Array<String>) {
     SpringApplication.run(KotlinSpringBootApplication::class.java, *args)

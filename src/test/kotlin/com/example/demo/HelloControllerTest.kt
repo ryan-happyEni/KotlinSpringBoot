@@ -22,6 +22,6 @@ class HelloControllerTest {
         Assert.assertNotNull(result)
         Assert.assertEquals(HttpStatus.OK, result.statusCode)
 		
-		println("$result")
+		println(">>>>>>>>>$result")
 	}
 }
