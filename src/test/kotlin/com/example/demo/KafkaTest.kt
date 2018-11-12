@@ -18,6 +18,8 @@ class KafkaTest {
     private val logger = LogManager.getLogger(javaClass)
     @Value("\${kafka.broker.address}")
     val brokers: String? = null
+    @Value("\${kafka.broker.group-id}")
+    val groupId: String? = null
 
     @Test
     fun test() {
@@ -34,7 +36,7 @@ class KafkaTest {
     fun testConsumer() {
         val topic = "users"
 
-        var kafka = SimpleConsumer(brokers?: "")
+        var kafka = SimpleConsumer(brokers?: "", groupId?: "")
         var records= kafka.subscribe(topic)
 
         var userList : MutableList<User> = mutableListOf<User>()
@@ -53,5 +55,12 @@ class KafkaTest {
                 e.printStackTrace()
             }
         }
+    }
+
+    @Test
+    fun testList() {
+        var kafka = SimpleConsumer(brokers?: "", groupId?: "")
+        var records= kafka.topicList()
+        logger.info(records)
     }
 }

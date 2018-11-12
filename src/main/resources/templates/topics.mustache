@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> meta}}
+</head>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/static/css/default.css"/>
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script type="text/javascript">
+        var contextPath = "";
+    </script>
+<body>
+    {{> header}}
+    <div class="container-fluid">
+        <div class="row">
+            {{> left}}
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Kafka Topics</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                    </div>
+                </div>
+                <div class="pt-3 pb-2 mb-3 border-bottom">
+                    <form id="frm" name="frm" method="post">
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul id="topics"></ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="/static/js/topics.js"></script>
+    {{> footer}}
+</body>
+</html>

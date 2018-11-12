@@ -6,19 +6,20 @@ import org.apache.kafka.clients.consumer.Consumer
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.ConsumerRecords
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.common.PartitionInfo
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.logging.log4j.LogManager
 import java.time.Duration
 import java.util.*
 
-class SimpleConsumer(brokers: String){
+class SimpleConsumer(brokers: String, groupId: String){
     private val logger = LogManager.getLogger(javaClass)
-    private val consumer = createConsumer(brokers)
+    private val consumer = createConsumer(brokers, groupId)
 
-    private fun createConsumer(brokers: String): Consumer<String, String> {
+    private fun createConsumer(brokers: String, groupId: String): Consumer<String, String> {
         val props = Properties()
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = brokers
-        props[ConsumerConfig.GROUP_ID_CONFIG] = "person-processor"
+        props[ConsumerConfig.GROUP_ID_CONFIG] = groupId
         props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.canonicalName
         props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.canonicalName
         props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = "true"
@@ -37,5 +38,14 @@ class SimpleConsumer(brokers: String){
         //}
         consumer.close()
         return records
+    }
+
+    fun topicList() : MutableSet<String> {
+        logger.info("Consuming and processing data")
+        var list = consumer.listTopics()
+        var keys : MutableSet<String> = list.keys
+
+        consumer.close()
+        return keys
     }
 }

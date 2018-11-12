@@ -54,6 +54,7 @@ dependencies {
 	implementation("org.slf4j:slf4j-api")
 	implementation("ch.qos.logback:logback-classic")
 	implementation("ch.qos.logback:logback-core")
+	implementation('org.springframework.boot:spring-boot-starter-mustache')
 	runtimeOnly('mysql:mysql-connector-java')
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.junit.jupiter:junit-jupiter-api")
